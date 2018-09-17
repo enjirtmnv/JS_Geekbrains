@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+function CoffeeMachine(power) {
+    let waterAmount = 0;
+    let maxTemp = 90;
+    let waterHeatCapacity = 4200;
+    this.addWater = function (newAmount) {
+        if (newAmount >= 50){
+            waterAmount = newAmount
+        } else {
+            console.error('Slishkom malo vody')
+        }
+    };
+    let calcBoilTime = function () {
+        return (waterAmount * waterHeatCapacity * maxTemp) / power;
+    };
+   this.getBoilTime = function() {
+       return calcBoilTime()
+   };
+
+    this.launch = function () {
+        setTimeout(function () {
+            console.log('Кофе готов!')
+        },calcBoilTime());
+
+    }
+}
+
+let vitek = new CoffeeMachine(3000);
+vitek.addWater(50);
+console.log(vitek.getBoilTime());;
+vitek.launch();
+
+</script>
+</body>
+</html>
